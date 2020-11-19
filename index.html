@@ -21,8 +21,8 @@
                 }
                 #overlay, .overlay {
                     position: absolute;
-                    top: 0;
-                    left: 0;
+                    top: -40;
+                    left: -70;
             }
         </style>
     </head>
@@ -51,7 +51,7 @@
                     video.srcObject = stream;
                     })
                     .catch(function (err0r) {
-                    console.log("Something went wrong!");
+                    console.log("not working.......");
                     });
                 }
 
@@ -83,7 +83,7 @@
                             const labeledFaceDescriptors = await Promise.all(
                                 labels.map(async label => {
                                     // fetch image data from urls and convert blob to HTMLImage element
-                                    const imgUrl = `${label}.jpeg`
+                                    const imgUrl = `img/eddie/${label}.jpeg`
                                     const img = await faceapi.fetchImage(imgUrl)
 
                                     // detect the face with the highest score in the image and compute it's landmarks and face descriptor
@@ -110,8 +110,8 @@
                                 drawBox.draw(canvas)
                             })
 
-                        },300);
-
+                        },10);
+//300 ms about 15fps I think, trying higher.
                         console.log(displaySize)
                     }
                     detect()
