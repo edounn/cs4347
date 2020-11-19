@@ -78,7 +78,7 @@
                             const fullFaceDescription = faceapi.resizeResults(fullFaceDescriptions, displaySize)
                             // faceapi.draw.drawDetections(canvas, fullFaceDescriptions)
 
-                            const labels = ["img/eddie"]
+                            const labels = ["eddie"]
 
                             const labeledFaceDescriptors = await Promise.all(
                                 labels.map(async label => {
