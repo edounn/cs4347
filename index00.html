@@ -1,0 +1,83 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="cs4347 Project">
+    <meta name="author" content="Eddie Dounn, eid1@txstate.edu">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>Eddie Dounn CS4347 Project</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/cover/">
+
+    <!-- Bootstrap core CSS -->
+<link href="presentation/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+
+<meta name="theme-color" content="#563d7c">
+<link href="presentation/css/presentation.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Personalized Smart Display</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link active" href="index.html">Motivation</a>
+        <a class="nav-link active" href="index0.html">Problem</a>
+        <a class="nav-link active" href="index00.html">Models</a>
+        <a class="nav-link" href="faceDetectWebcamTest.html">next ></a>
+      </nav>
+    </div>
+  </header>
+
+  <main role="main" class="inner cover">
+    <h1 class="cover-heading">Models</h1>
+  </main>
+    <ul class="list-unstyled">
+      <li>Face Detection Models</li>
+      <li>  68 Point Face Landmark Detection Models</li>
+        <li>Face Recognition Model</li>
+          <li>Face Expression Recognition Model</li>
+
+          <a name="models"></a></p>
+
+        				<p><a name="models-face-detection"></a></p>
+        				<h2 id="face-detection-models">Face Detection Models</h2>
+        				<h3 id="ssd-mobilenet-v1">SSD Mobilenet V1</h3>
+        				<p>For face detection, this project implements a SSD (Single Shot Multibox Detector) based on MobileNetV1. The neural net will compute the locations of each face in an image and will return the bounding boxes together with it&#39;s probability for each face. This face detector is aiming towards obtaining high accuracy in detecting face bounding boxes instead of low inference time. The size of the quantized model is about 5.4 MB (<strong>ssd_mobilenetv1_model</strong>).</p>
+        				<p>The face detection model has been trained on the <a href="http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/">WIDERFACE dataset</a> and the weights are provided by <a href="https://github.com/yeephycho">yeephycho</a> in <a href="https://github.com/yeephycho/tensorflow-face-detection">this</a> repo.</p>
+        				<h3 id="tiny-face-detector">Tiny Face Detector</h3>
+        				<p>The Tiny Face Detector is a very performant, realtime face detector, which is much faster, smaller and less resource consuming compared to the SSD Mobilenet V1 face detector, in return it performs slightly less well on detecting small faces. This model is extremely mobile and web friendly, thus it should be your GO-TO face detector on mobile devices and resource limited clients. The size of the quantized model is only 190 KB (<strong>tiny_face_detector_model</strong>).</p>
+        				<p>The face detector has been trained on a custom dataset of ~14K images labeled with bounding boxes. Furthermore the model has been trained to predict bounding boxes, which entirely cover facial feature points, thus it in general produces better results in combination with subsequent face landmark detection than SSD Mobilenet V1.</p>
+        				<p>This model is basically an even tinier version of Tiny Yolo V2, replacing the regular convolutions of Yolo with depthwise separable convolutions. Yolo is fully convolutional, thus can easily adapt to different input image sizes to trade off accuracy for performance (inference time).</p>
+        				<h3 id="mtcnn">MTCNN</h3>
+        				<p><strong>Note, this model is mostly kept in this repo for experimental reasons. In general the other face detectors should perform better, but of course you are free to play around with MTCNN.</strong></p>
+        				<p>MTCNN (Multi-task Cascaded Convolutional Neural Networks) represents an alternative face detector to SSD Mobilenet v1 and Tiny Yolo v2, which offers much more room for configuration. By tuning the input parameters, MTCNN should be able to detect a wide range of face bounding box sizes. MTCNN is a 3 stage cascaded CNN, which simultaneously returns 5 face landmark points along with the bounding boxes and scores for each face. Additionally the model size is only 2MB.</p>
+        				<p>MTCNN has been presented in the paper <a href="https://kpzhang93.github.io/MTCNN_face_detection_alignment/paper/spl.pdf">Joint Face Detection and Alignment using Multi-task Cascaded Convolutional Networks</a> by Zhang et al. and the model weights are provided in the official <a href="https://github.com/kpzhang93/MTCNN_face_detection_alignment">repo</a> of the MTCNN implementation.</p>
+        				<p><a name="models-face-landmark-detection"></a></p>
+        				<h2 id="68-point-face-landmark-detection-models">68 Point Face Landmark Detection Models</h2>
+        				<p>This package implements a very lightweight and fast, yet accurate 68 point face landmark detector. The default model has a size of only 350kb (<strong>face_landmark_68_model</strong>) and the tiny model is only 80kb (<strong>face_landmark_68_tiny_model</strong>). Both models employ the ideas of depthwise separable convolutions as well as densely connected blocks. The models have been trained on a dataset of ~35k face images labeled with 68 face landmark points.</p>
+        				<p><a name="models-face-recognition"></a></p>
+        				<h2 id="face-recognition-model">Face Recognition Model</h2>
+        				<p>For face recognition, a ResNet-34 like architecture is implemented to compute a face descriptor (a feature vector with 128 values) from any given face image, which is used to describe the characteristics of a persons face. The model is <strong>not</strong> limited to the set of faces used for training, meaning you can use it for face recognition of any person, for example yourself. You can determine the similarity of two arbitrary faces by comparing their face descriptors, for example by computing the euclidean distance or using any other classifier of your choice.</p>
+        				<p>The neural net is equivalent to the <strong>FaceRecognizerNet</strong> used in <a href="https://github.com/justadudewhohacks/face-recognition.js">face-recognition.js</a> and the net used in the <a href="https://github.com/davisking/dlib/blob/master/examples/dnn_face_recognition_ex.cpp">dlib</a> face recognition example. The weights have been trained by <a href="https://github.com/davisking">davisking</a> and the model achieves a prediction accuracy of 99.38% on the LFW (Labeled Faces in the Wild) benchmark for face recognition.</p>
+        				<p>The size of the quantized model is roughly 6.2 MB (<strong>face_recognition_model</strong>).</p>
+        				<p><a name="models-face-expression-recognition"></a></p>
+        				<h2 id="face-expression-recognition-model">Face Expression Recognition Model</h2>
+        				<p>The face expression recognition model is lightweight, fast and provides reasonable accuracy. The model has a size of roughly 310kb and it employs depthwise separable convolutions and densely connected blocks. It has been trained on a variety of images from publicly available datasets as well as images scraped from the web. Note, that wearing glasses might decrease the accuracy of the prediction results.</p>
+    </ul>
+
+
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>CS4347 Project -  Eddie Dounn</p>
+    </div>
+  </footer>
+</div>
+</body>
+</html>
