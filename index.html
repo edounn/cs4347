@@ -33,8 +33,7 @@
 
             <!-- </div> -->
 
-<script src="https://code.jquery.com/jquery-2.1.1.min.js" integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=" crossorigin="anonymous"></script>
-
+        <script src="https://code.jquery.com/jquery-2.1.1.min.js" integrity="sha256-h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=" crossorigin="anonymous"></script>
         <script src="js/face-api.js"></script>
         <script>
 
@@ -79,12 +78,12 @@
                             const fullFaceDescription = faceapi.resizeResults(fullFaceDescriptions, displaySize)
                             // faceapi.draw.drawDetections(canvas, fullFaceDescriptions)
 
-                            const labels = ["img/steveoni"]
+                            const labels = ["img/eddie"]
 
                             const labeledFaceDescriptors = await Promise.all(
                                 labels.map(async label => {
                                     // fetch image data from urls and convert blob to HTMLImage element
-                                    const imgUrl = `${label}.JPG`
+                                    const imgUrl = `${label}.jpeg`
                                     const img = await faceapi.fetchImage(imgUrl)
 
                                     // detect the face with the highest score in the image and compute it's landmarks and face descriptor
