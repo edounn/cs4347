@@ -12,3 +12,7 @@
 -https://heartbeat.fritz.ai/facial-recognition-system-with-javascript-f9659c381434
 
 -https://itnext.io/face-api-js-javascript-api-for-face-recognition-in-the-browser-with-tensorflow-js-bcc2a6c4cf07
+
+
+#Todo
+1.  Switch to Tiny Face Detect model as it is faster
